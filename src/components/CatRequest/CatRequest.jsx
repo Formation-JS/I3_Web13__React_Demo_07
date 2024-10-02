@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { useEffect, useState } from 'react';
+import './CatRequest.css';
 
 const CatRequest = ({ breed }) => {
 
@@ -24,7 +25,13 @@ const CatRequest = ({ breed }) => {
             .then(({ data }) => {
                 console.log(data);
                 if(data.length >= 1) {
-                    setDataRequest(data[0]);
+                    const cat = data[0];
+                    setDataRequest({
+                        id: cat.id,
+                        name: cat.breeds.map(b => b.name).join(' / '),
+                        urlImage: cat.url,
+                        altImage: `Cat image for ${cat.id}`
+                    });
                 }
                 else {
                     setError('Po de chat 😿')
@@ -57,11 +64,11 @@ const CatLoading = () => {
     )
 }
 
-const CatResult = ({id, url}) => {
+const CatResult = ({id, urlImage, altImage, name}) => {
     return (
-        <div>
-            <p>Identifiant du chat : {id}</p>
-            <img src={url} alt={'Image du chat : ' + id}  width={300} />
+        <div className='cat_result'>
+            <p>{name} <span>(Id : {id})</span></p>
+            <img src={urlImage} alt={altImage} />
         </div>
     );
 }

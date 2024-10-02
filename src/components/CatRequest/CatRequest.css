@@ -1,0 +1,20 @@
+.cat_result {
+
+    p {
+        color: navy;
+        font-weight: 600;
+        font-size: 1.2em;
+
+        span {
+            color: aquamarine;
+            font-weight: lighter;
+        }
+    }
+
+    img {
+        display: inline-block;
+        width: 100vw;
+        height: 60vh;
+        object-fit: contain;
+    }
+}
